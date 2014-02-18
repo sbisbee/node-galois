@@ -116,3 +116,38 @@ exports.multtable_math = function(test) {
 
   test.done();
 };
+
+exports.create_log_tables = function(test) {
+  test.strictEqual(gf.create_log_tables(3), true, 'Valid table');
+  test.strictEqual(gf.create_log_tables(3), true, 'Valid table, retry');
+
+  test.throws(function() {
+    gf.create_log_tables(0);
+  }, Error, 'Throw if w is too small');
+
+  test.throws(function() {
+    gf.create_log_tables(31);
+  }, Error, 'Throw if w is too large');
+
+  test.done();
+};
+
+exports.logtable_math = function(test) {
+  var w = 3;
+  var a = 4;
+  var b = 5;
+
+  test.ok(gf.create_mult_tables(w), 'Got a table');
+
+  test.strictEqual(
+    gf.logtable_multiply(a, b, w),
+    gf.single_multiply(a, b, w),
+    'Multiply');
+
+  test.strictEqual(
+    gf.logtable_divide(a, b, w),
+    gf.single_divide(a, b, w),
+    'Divide');
+
+  test.done();
+};
