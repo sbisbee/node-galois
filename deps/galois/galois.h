@@ -29,6 +29,9 @@ plank@cs.utk.edu
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern int galois_single_multiply(int a, int b, int w);
 extern int galois_single_divide(int a, int b, int w);
 extern int galois_log(int value, int w);
@@ -55,6 +58,9 @@ extern int *galois_get_mult_table(int w);
 extern int *galois_get_div_table(int w);
 extern int *galois_get_log_table(int w);
 extern int *galois_get_ilog_table(int w);
+#ifdef __cplusplus
+}
+#endif
 
 void galois_region_xor(           char *r1,         /* Region 1 */
                                   char *r2,         /* Region 2 */
