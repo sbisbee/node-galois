@@ -81,3 +81,18 @@ exports.inverses = function(test) {
   
   test.done();
 };
+
+exports.create_mult_tables = function(test) {
+  test.strictEqual(gf.create_mult_tables(3), true, 'Valid table');
+  test.strictEqual(gf.create_mult_tables(3), true, 'Valid table, retry');
+
+  test.throws(function() {
+    gf.create_mult_tables(0);
+  }, Error, 'Throw if w is too small');
+
+  test.throws(function() {
+    gf.create_mult_tables(14);
+  }, Error, 'Throw if w is too large');
+
+  test.done();
+};

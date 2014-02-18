@@ -184,6 +184,33 @@ Handle<Value> shift_inverse(const Arguments& args) {
   return scope.Close(num);
 }
 
+Handle<Value> create_mult_tables(const Arguments& args) {
+  HandleScope scope;
+  Handle<Boolean> succ;
+  int w;
+
+  if(args.Length() < 1) {
+    ThrowException(Exception::TypeError(String::New("Wrong number of args")));
+    return scope.Close(Undefined());
+  }
+
+  if(!args[0]->IsNumber()) {
+    ThrowException(Exception::TypeError(String::New("Wrong arguments")));
+    return scope.Close(Undefined());
+  }
+
+  w = args[0]->ToInteger()->Value();
+
+  if(w < 1 || w >= 14) {
+    ThrowException(Exception::Error(String::New("Invalid w (0 < w < 14)")));
+    return scope.Close(Undefined());
+  }
+
+  succ = Boolean::New(galois_create_mult_tables(w) == 0);
+
+  return scope.Close(succ);
+}
+
 static void Init(Handle<Object> exports) {
   exports->Set(String::NewSymbol("single_multiply"),
     FunctionTemplate::New(single_multiply)->GetFunction());
@@ -208,6 +235,9 @@ static void Init(Handle<Object> exports) {
 
   exports->Set(String::NewSymbol("shift_inverse"),
     FunctionTemplate::New(shift_inverse)->GetFunction());
+
+  exports->Set(String::NewSymbol("create_mult_tables"),
+    FunctionTemplate::New(create_mult_tables)->GetFunction());
 }
 
 NODE_MODULE(galoisjs, Init)
