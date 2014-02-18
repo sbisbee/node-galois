@@ -1,0 +1,8 @@
+{
+  "name": "galois",
+  "version": "0.1.0",
+  "description": "Bindings for galois field arithmetic to James Plank's library",
+  "main": "galois.js",
+  "private": true,
+  "gypfile": true
+}
