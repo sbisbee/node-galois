@@ -103,7 +103,7 @@ Handle<Value> shift_multiply(const Arguments& args) {
     return scope.Close(Undefined());
   }
 
-  if(!args[0]->IsNumber() || !args[1]->IsNumber()) {
+  if(!args[0]->IsNumber() || !args[1]->IsNumber() || !args[2]->IsNumber()) {
     ThrowException(Exception::TypeError(String::New("Wrong arguments")));
     return scope.Close(Undefined());
   }
@@ -126,7 +126,7 @@ Handle<Value> shift_divide(const Arguments& args) {
     return scope.Close(Undefined());
   }
 
-  if(!args[0]->IsNumber() || !args[1]->IsNumber()) {
+  if(!args[0]->IsNumber() || !args[1]->IsNumber() || !args[2]->IsNumber()) {
     ThrowException(Exception::TypeError(String::New("Wrong arguments")));
     return scope.Close(Undefined());
   }
