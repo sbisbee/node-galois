@@ -29,7 +29,7 @@ exports.single_divide = function(test) {
   test.done();
 };
 
-exports.simpleLogs = function(test) {
+exports.simple_logs = function(test) {
   // Prove that: a * b = ilog[ log[a] + log[b] ]
   var w = 3; //GF8
   var a = 4;
@@ -43,6 +43,30 @@ exports.simpleLogs = function(test) {
 
   right = gf.ilog(gf.log(a, w) + gf.log(b, w), w);
   test.strictEqual(right, left, 'Proof');
+
+  test.done();
+};
+
+exports.shift_multiply = function(test) {
+  var w = 3; //GF8
+  var a = 4;
+  var b = 5;
+
+  test.strictEqual(
+    gf.shift_multiply(a, b, w),
+    gf.single_multiply(a, b, w));
+
+  test.done();
+};
+
+exports.shift_divide = function(test) {
+  var w = 3;
+  var a = 2;
+  var b = 4;
+
+  test.strictEqual(
+    gf.shift_divide(a, b, w),
+    gf.single_divide(a, b, w));
 
   test.done();
 };
