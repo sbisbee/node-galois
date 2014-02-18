@@ -96,3 +96,23 @@ exports.create_mult_tables = function(test) {
 
   test.done();
 };
+
+exports.multtable_math = function(test) {
+  var w = 3;
+  var a = 4;
+  var b = 5;
+
+  test.ok(gf.create_mult_tables(w), 'Got a table');
+
+  test.strictEqual(
+    gf.multtable_multiply(a, b, w),
+    gf.single_multiply(a, b, w),
+    'Multiply');
+
+  test.strictEqual(
+    gf.multtable_divide(a, b, w),
+    gf.single_divide(a, b, w),
+    'Divide');
+
+  test.done();
+};

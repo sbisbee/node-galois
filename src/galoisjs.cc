@@ -211,6 +211,52 @@ Handle<Value> create_mult_tables(const Arguments& args) {
   return scope.Close(succ);
 }
 
+Handle<Value> multtable_multiply(const Arguments& args) {
+  HandleScope scope;
+  Local<Number> num;
+  
+  if(args.Length() < 3) {
+    ThrowException(Exception::TypeError(String::New("Wrong number of args")));
+    return scope.Close(Undefined());
+  }
+
+  if(!args[0]->IsNumber() || !args[1]->IsNumber() || !args[2]->IsNumber()) {
+    ThrowException(Exception::TypeError(String::New("Wrong arguments")));
+    return scope.Close(Undefined());
+  }
+
+  num = Number::New(
+    galois_multtable_multiply(
+      args[0]->ToInteger()->Value(),
+      args[1]->ToInteger()->Value(),
+      args[2]->ToInteger()->Value()));
+
+  return scope.Close(num);
+}
+
+Handle<Value> multtable_divide(const Arguments& args) {
+  HandleScope scope;
+  Local<Number> num;
+  
+  if(args.Length() < 3) {
+    ThrowException(Exception::TypeError(String::New("Wrong number of args")));
+    return scope.Close(Undefined());
+  }
+
+  if(!args[0]->IsNumber() || !args[1]->IsNumber() || !args[2]->IsNumber()) {
+    ThrowException(Exception::TypeError(String::New("Wrong arguments")));
+    return scope.Close(Undefined());
+  }
+
+  num = Number::New(
+    galois_multtable_divide(
+      args[0]->ToInteger()->Value(),
+      args[1]->ToInteger()->Value(),
+      args[2]->ToInteger()->Value()));
+
+  return scope.Close(num);
+}
+
 static void Init(Handle<Object> exports) {
   exports->Set(String::NewSymbol("single_multiply"),
     FunctionTemplate::New(single_multiply)->GetFunction());
@@ -238,6 +284,12 @@ static void Init(Handle<Object> exports) {
 
   exports->Set(String::NewSymbol("create_mult_tables"),
     FunctionTemplate::New(create_mult_tables)->GetFunction());
+
+  exports->Set(String::NewSymbol("multtable_multiply"),
+    FunctionTemplate::New(multtable_multiply)->GetFunction());
+
+  exports->Set(String::NewSymbol("multtable_divide"),
+    FunctionTemplate::New(multtable_divide)->GetFunction());
 }
 
 NODE_MODULE(galoisjs, Init)
