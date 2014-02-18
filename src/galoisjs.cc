@@ -330,6 +330,42 @@ Handle<Value> logtable_divide(const Arguments& args) {
   return scope.Close(num);
 }
 
+Handle<Value> create_split_w8_tables(const Arguments& args) {
+  HandleScope scope;
+  Handle<Boolean> succ;
+
+  if(args.Length() >= 1) {
+    ThrowException(Exception::TypeError(String::New("Wrong number of args")));
+    return scope.Close(Undefined());
+  }
+
+  succ = Boolean::New(galois_create_split_w8_tables() == 0);
+
+  return scope.Close(succ);
+}
+
+Handle<Value> split_w8_multiply(const Arguments& args) {
+  HandleScope scope;
+  Local<Number> num;
+  
+  if(args.Length() < 2) {
+    ThrowException(Exception::TypeError(String::New("Wrong number of args")));
+    return scope.Close(Undefined());
+  }
+
+  if(!args[0]->IsNumber() || !args[1]->IsNumber()) {
+    ThrowException(Exception::TypeError(String::New("Wrong arguments")));
+    return scope.Close(Undefined());
+  }
+
+  num = Number::New(
+    galois_split_w8_multiply(
+      args[0]->ToInteger()->Value(),
+      args[1]->ToInteger()->Value()));
+
+  return scope.Close(num);
+}
+
 static void Init(Handle<Object> exports) {
   exports->Set(String::NewSymbol("single_multiply"),
     FunctionTemplate::New(single_multiply)->GetFunction());
@@ -372,6 +408,12 @@ static void Init(Handle<Object> exports) {
 
   exports->Set(String::NewSymbol("logtable_divide"),
     FunctionTemplate::New(logtable_divide)->GetFunction());
+
+  exports->Set(String::NewSymbol("create_split_w8_tables"),
+    FunctionTemplate::New(create_split_w8_tables)->GetFunction());
+
+  exports->Set(String::NewSymbol("split_w8_multiply"),
+    FunctionTemplate::New(split_w8_multiply)->GetFunction());
 }
 
 NODE_MODULE(galoisjs, Init)

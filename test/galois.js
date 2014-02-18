@@ -151,3 +151,18 @@ exports.logtable_math = function(test) {
 
   test.done();
 };
+
+exports.split_w8_tables = function(test) {
+  var w = 32;
+  var a = 45;
+  var b = 46;
+
+  test.ok(gf.create_split_w8_tables, 'Got a table');
+
+  test.strictEqual(
+    gf.split_w8_multiply(a, b),
+    gf.single_multiply(a, b, w),
+    'Multiply');
+
+  test.done();
+};
