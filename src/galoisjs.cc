@@ -27,18 +27,9 @@ Handle<Value> single_multiply(const Arguments& args) {
   return scope.Close(num);
 }
 
-Handle<Value> bwah(const Arguments& args) {
-  HandleScope scope;
-  Local<String> ack = String::New("bwack");
-  return scope.Close(ack);
-}
-
 static void Init(Handle<Object> exports) {
   exports->Set(String::NewSymbol("single_multiply"),
     FunctionTemplate::New(single_multiply)->GetFunction());
-
-  exports->Set(String::NewSymbol("bwah"),
-    FunctionTemplate::New(bwah)->GetFunction());
 }
 
 NODE_MODULE(galoisjs, Init)

@@ -1,11 +1,6 @@
 var nodeunit = require('nodeunit');
 var galois = require('../src/galois.js');
 
-exports.bwah = function(test) {
-  test.strictEqual(galois.bwah(), 'bwack');
-  test.done();
-};
-
 exports.single_multiply = function(test) {
   test.strictEqual(typeof galois.single_multiply, 'function');
 

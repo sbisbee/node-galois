@@ -7,7 +7,7 @@ all: build
 build:
 	${NODE_GYP} rebuild
 
-check: build
+check:
 	make -C ${TEST_DIR} check
 
 clean:
