@@ -70,3 +70,14 @@ exports.shift_divide = function(test) {
 
   test.done();
 };
+
+exports.inverses = function(test) {
+  var w = 32;
+  var x = 1404360778;
+  var y = 106460795;
+
+  test.strictEqual(gf.inverse(x, w), y);
+  test.strictEqual(gf.shift_inverse(y, w), x);
+  
+  test.done();
+};

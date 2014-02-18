@@ -140,6 +140,50 @@ Handle<Value> shift_divide(const Arguments& args) {
   return scope.Close(num);
 }
 
+Handle<Value> inverse(const Arguments& args) {
+  HandleScope scope;
+  Local<Number> num;
+
+  if(args.Length() < 2) {
+    ThrowException(Exception::TypeError(String::New("Wrong number of args")));
+    return scope.Close(Undefined());
+  }
+
+  if(!args[0]->IsNumber() || !args[1]->IsNumber()) {
+    ThrowException(Exception::TypeError(String::New("Wrong arguments")));
+    return scope.Close(Undefined());
+  }
+
+  num = Number::New(
+    ::galois_inverse(
+      args[0]->ToInteger()->Value(),
+      args[1]->ToInteger()->Value()));
+
+  return scope.Close(num);
+}
+
+Handle<Value> shift_inverse(const Arguments& args) {
+  HandleScope scope;
+  Local<Number> num;
+
+  if(args.Length() < 2) {
+    ThrowException(Exception::TypeError(String::New("Wrong number of args")));
+    return scope.Close(Undefined());
+  }
+
+  if(!args[0]->IsNumber() || !args[1]->IsNumber()) {
+    ThrowException(Exception::TypeError(String::New("Wrong arguments")));
+    return scope.Close(Undefined());
+  }
+
+  num = Number::New(
+    ::galois_shift_inverse(
+      args[0]->ToInteger()->Value(),
+      args[1]->ToInteger()->Value()));
+
+  return scope.Close(num);
+}
+
 static void Init(Handle<Object> exports) {
   exports->Set(String::NewSymbol("single_multiply"),
     FunctionTemplate::New(single_multiply)->GetFunction());
@@ -158,6 +202,12 @@ static void Init(Handle<Object> exports) {
 
   exports->Set(String::NewSymbol("shift_divide"),
     FunctionTemplate::New(shift_divide)->GetFunction());
+
+  exports->Set(String::NewSymbol("inverse"),
+    FunctionTemplate::New(inverse)->GetFunction());
+
+  exports->Set(String::NewSymbol("shift_inverse"),
+    FunctionTemplate::New(shift_inverse)->GetFunction());
 }
 
 NODE_MODULE(galoisjs, Init)
