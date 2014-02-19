@@ -21,6 +21,9 @@
     "nodeunit": "0.8.*",
     "node-gyp": "0.12.*"
   },
+  "scripts": {
+    "test": "make check"
+  },
 
   "gypfile": true,
 
