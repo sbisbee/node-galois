@@ -6,6 +6,21 @@ This Node.js module wraps James S. Plank's Galois.c code
 functionality available in Node.js. Please refer to that page for documentation
 about the functions and non-JS bits.
 
+This package also adds a little more protection when creating tables to prevent
+segfaults.
+
+Examples
+--------
+
+```
+var gf = require('galois');
+
+var w = 8; //2^8 = GF256
+
+gf.single_multiply(2, 3, w); //6
+gf.single_divide(6, 3, w); //2
+```
+
 License
 -------
 
