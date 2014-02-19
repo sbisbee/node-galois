@@ -1,6 +1,8 @@
 node-galois
 ===========
 
+[![Build Status](https://travis-ci.org/sbisbee/node-galois.png?branch=master)](https://travis-ci.org/sbisbee/node-galois)
+
 This is a native Node.js module (C/C++) that wraps James S. Plank's Galois.c
 code (http://web.eecs.utk.edu/~plank/plank/papers/CS-07-593/), making all of
 the functionality available in Node.js. Please refer to that page for
