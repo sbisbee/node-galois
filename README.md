@@ -12,7 +12,7 @@ segfaults.
 Examples
 --------
 
-```
+```javascript
 var gf = require('galois');
 
 var w = 8; //2^8 = GF256
