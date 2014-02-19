@@ -10,7 +10,9 @@ documentation about the non-JS bits (function documentation, optimization of
 single vs table calls, etc.).
 
 This package also adds a little more protection when creating tables to prevent
-segfaults.
+segfaults. However, it's still possible to run into segfaults. For example,
+calling `multtable_multiply(a, b, w)` before `create_mult_tables(w)` will be
+allowed and cause a segfault.
 
 Examples
 --------
@@ -20,8 +22,14 @@ var gf = require('galois');
 
 var w = 8; //2^8 = GF256
 
+//slower way
 gf.single_multiply(2, 3, w); //6
 gf.single_divide(6, 3, w); //2
+
+//faster way - calc and store the table in RAM, so arithmetic is simple lookups
+gf.create_mult_tables(w); 
+gf.multtable_multiply(2, 3, w); //6
+gf.multtable_divide(6, 3, w); //2
 ```
 
 License
