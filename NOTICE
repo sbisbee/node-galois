@@ -1,0 +1,8 @@
+node-galois
+Copyright 2014 Sam Bisbee
+
+This product also includes the following third-party components:
+
+  * Galois.c (http://web.eecs.utk.edu/~plank/plank/papers/CS-07-593/)
+
+    Copyright 2007, James S. Plank
