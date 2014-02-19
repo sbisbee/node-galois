@@ -32,6 +32,16 @@ gf.multtable_multiply(2, 3, w); //6
 gf.multtable_divide(6, 3, w); //2
 ```
 
+Install
+-------
+
+node-galois is available in NPM, so simply `npm install galois` to get it in
+your application.
+
+If you're looking to develop, `make build` will compile everything (does a
+node-gyp rebuild) and `make check` will run the tests (this is was `npm test`
+invokes).
+
 License
 -------
 
