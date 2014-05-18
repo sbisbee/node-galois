@@ -184,3 +184,20 @@ exports.split_w8_tables = function(test) {
 
   test.done();
 };
+
+exports.add = function(test) {
+  test.strictEqual(gf.add(0, 1, 1), 1);
+  test.strictEqual(gf.add(1, 0, 1), 1);
+  test.strictEqual(gf.add(1, 1, 1), 0);
+
+  test.done();
+};
+
+exports.subtract = function(test) {
+  test.strictEqual(gf.subtract(0, 1, 1), 1);
+  test.strictEqual(gf.subtract(1, 0, 1), 1);
+  test.strictEqual(gf.subtract(1, 1, 1), 0);
+
+  test.done();
+};
+

@@ -18,4 +18,8 @@
 
 var galoisjs = require('bindings')('galoisjs.node');
 
+galoisjs.add = galoisjs.subtract = function(a, b, w) {
+  return a ^ b;
+};
+
 module.exports = galoisjs;
