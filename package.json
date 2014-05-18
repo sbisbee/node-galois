@@ -1,6 +1,6 @@
 {
   "name": "galois",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Native module for math with galois fields",
   "author": "Sam Bisbee <sam@sbisbee.com> (http://www.sbisbee.com)",
   "license": "GPL-3.0",
